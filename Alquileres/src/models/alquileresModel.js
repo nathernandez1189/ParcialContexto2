@@ -27,8 +27,16 @@ async function traerAlquileresPorPropietario(id) {
   return rows;
 }
 
+// Obtener alquileres por arrendatario (NUEVA FUNCIÓN)
+async function traerAlquileresPorArrendatario(id) {
+  const [rows] = await pool.query('SELECT * FROM alquileres WHERE arrendatario_id = ?', [id]);
+  return rows;
+}
+
+// Recuerda exportarla:
 module.exports = {
   crearAlquiler,
   traerAlquileres,
-  traerAlquileresPorPropietario
+  traerAlquileresPorPropietario,
+  traerAlquileresPorArrendatario // <-- agrega aquí también
 };

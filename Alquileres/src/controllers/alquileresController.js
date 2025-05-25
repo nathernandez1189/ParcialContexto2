@@ -65,5 +65,15 @@ router.get('/propietario/:id', async (req, res) => {
     res.status(500).json({ error: 'Error al obtener alquileres del propietario' });
   }
 });
+// Obtener alquileres por arrendatario (NUEVO ENDPOINT)
+router.get('/arrendatario/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const data = await alquileresModel.traerAlquileresPorArrendatario(id);
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al obtener alquileres del arrendatario' });
+  }
+});
 
 module.exports = router;

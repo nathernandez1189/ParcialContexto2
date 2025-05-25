@@ -26,8 +26,15 @@ async function actualizarEstadoHabitacion(id, estado) {
   return await pool.query('UPDATE habitaciones SET estado = ? WHERE id = ?', [estado, id]);
 }
 
+// Obtener habitaciones por propietario
+async function traerHabitacionesPorPropietario(propietario_id) {
+  const [rows] = await pool.query('SELECT * FROM habitaciones WHERE propietario_id = ?', [propietario_id]);
+  return rows;
+}
+
 module.exports = {
   crearHabitacion,
   traerHabitacionesDisponibles,
-  actualizarEstadoHabitacion
+  actualizarEstadoHabitacion,
+  traerHabitacionesPorPropietario 
 };

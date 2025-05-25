@@ -52,4 +52,16 @@ router.patch('/:id/estado', async (req, res) => {
   }
 });
 
+// Ver habitaciones por propietario
+router.get('/propietario/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const habitaciones = await habitacionesModel.traerHabitacionesPorPropietario(id);
+    res.json(habitaciones);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al consultar habitaciones del propietario' });
+  }
+});
+
+
 module.exports = router;
